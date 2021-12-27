@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+darker = {extras = ["isort"], version = "*"}
+httpx = "*"
+
+[packages]
+fastapi = "*"
+gunicorn = "*"
+motor = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+pydantic = {extras = ["dotenv", "email"], version = "*"}
