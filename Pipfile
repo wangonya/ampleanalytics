@@ -13,3 +13,4 @@ gunicorn = "*"
 motor = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 pydantic = {extras = ["dotenv", "email"], version = "*"}
+fastapi-auth0 = "*"

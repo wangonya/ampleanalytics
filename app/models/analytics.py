@@ -1,5 +1,6 @@
-from datetime import datetime
+from datetime import date, datetime
 from enum import Enum
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -20,7 +21,7 @@ class TimeseriesPeriod(Enum):
 
 
 class Timeseries(BaseModel):
-    date: datetime
+    period: str
     hits: int
 
 

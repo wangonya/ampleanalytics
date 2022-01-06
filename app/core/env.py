@@ -12,6 +12,10 @@ class Env(BaseSettings):
     MONGODB_URL: str
     MONGODB_DBNAME: str
 
+    # auth
+    AUTH0_DOMAIN: str
+    AUTH0_API_AUDIENCE: str
+
     class Config:
         case_sensitive = True
         env_file = ".env"
