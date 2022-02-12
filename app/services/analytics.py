@@ -166,6 +166,32 @@ class Pipeline:
 
         return results
 
+    async def get_breakdown(self):
+        results = {
+            "top_consumers": [],
+            "top_platforms": [],
+            "top_user_agents": [],
+        }
+
+        for key, inner_key, field in [
+            ("top_consumers", "consumer", "$metadata.request_details.origin"),
+            ("top_platforms", "platform", "$metadata.request_details.platform"),
+            ("top_user_agents", "user_agent", "$metadata.request_details.user_agent"),
+        ]:
+            self.pipeline.append(
+                {
+                    "$group": {
+                        "_id": field,
+                        "hits": {"$count": {}},
+                    },
+                },
+            )
+            async for doc in db_client.analytics.aggregate(self.pipeline):
+                doc[inner_key] = doc.get("_id")
+                results.get(key).append(doc)
+            self.pipeline.pop()
+        return results
+
 
 async def post_stats(stats: dict):
     await db_client.analytics.insert_one(stats)

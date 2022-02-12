@@ -1,6 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 from enum import Enum
-from typing import Union
+from typing import List
 
 from pydantic import BaseModel
 
@@ -43,3 +43,24 @@ class Stats(BaseModel):
     request_time: datetime
     response_time: datetime
     metadata: Metadata
+
+
+class ConsumersBreakdown(BaseModel):
+    consumer: str
+    hits: int
+
+
+class PlatformBreakdown(BaseModel):
+    platform: str
+    hits: int
+
+
+class UserAgentBreakdown(BaseModel):
+    user_agent: str
+    hits: int
+
+
+class Breakdown(BaseModel):
+    top_consumers: List[ConsumersBreakdown] = []
+    top_platforms: List[PlatformBreakdown] = []
+    top_user_agents: List[UserAgentBreakdown] = []

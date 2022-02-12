@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 from starlette.middleware.cors import CORSMiddleware
 
 from app.core.env import ENV
-from app.routes import analytics, user
+from app.routes import analytics, user, projects
 
 app = FastAPI()
 
@@ -24,3 +24,4 @@ def root():
 
 app.include_router(user.router)
 app.include_router(analytics.router)
+app.include_router(projects.router)
